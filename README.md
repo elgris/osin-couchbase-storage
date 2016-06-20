@@ -25,11 +25,15 @@ import (
     "github.com/RangelReale/osin"
 )
 
-s := storage.NewStorage(storage.Config{
+s, err := storage.NewStorage(storage.Config{
     ConnectionString: "couchbase://localhost",
     BucketName:       "default",
     BucketPassword:   "",
 })
+
+if err != nil {
+    panic(err.Error())
+}
 
 server := osin.NewServer(osin.NewServerConfig(), s)
 ```
